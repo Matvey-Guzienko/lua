@@ -1,5 +1,5 @@
 script_name("Auto-Nak.release-1.0.0")
-script_version("28.09.2023")
+script_version("25.09.2023")
 local sampev = require("samp.events")
 local copas = require('copas')
 local http = require('copas.http')
@@ -22,7 +22,7 @@ local togglecheck = true
 local tagchat = '{c92800}Auto-Nak{ffffff}: '
 local debugmode = true
 local statusnotf = false
-local chatglobal = {"VIP ADV", "PREMIUM", "VIP", "FOREVER", "Пилот гражданской авиации","Пожарный","Механик","Дальнобойщик","Таксист","Инкассатор","Мусорщик","Работник налоговой","Развозчик металлолома","Водитель автобуса","Развозчик продуктов", "Адвокат", "Водитель трамвая", "Машинист электропоезда", "Главный фермер", "Руководитель грузчиков", "Руководитель завода", "Ремонтник дорог", "Продавец хотдогов", "Парковщик"}
+local chatglobal = {"VIP ADV", "PREMIUM", "VIP", "FOREVER", "ГЏГЁГ«Г®ГІ ГЈГ°Г Г¦Г¤Г Г­Г±ГЄГ®Г© Г ГўГЁГ Г¶ГЁГЁ","ГЏГ®Г¦Г Г°Г­Г»Г©","ГЊГҐГµГ Г­ГЁГЄ","Г„Г Г«ГјГ­Г®ГЎГ®Г©Г№ГЁГЄ","Г’Г ГЄГ±ГЁГ±ГІ","Г€Г­ГЄГ Г±Г±Г ГІГ®Г°","ГЊГіГ±Г®Г°Г№ГЁГЄ","ГђГ ГЎГ®ГІГ­ГЁГЄ Г­Г Г«Г®ГЈГ®ГўГ®Г©","ГђГ Г§ГўГ®Г§Г·ГЁГЄ Г¬ГҐГІГ Г«Г«Г®Г«Г®Г¬Г ","Г‚Г®Г¤ГЁГІГҐГ«Гј Г ГўГІГ®ГЎГіГ±Г ","ГђГ Г§ГўГ®Г§Г·ГЁГЄ ГЇГ°Г®Г¤ГіГЄГІГ®Гў", "ГЂГ¤ГўГ®ГЄГ ГІ", "Г‚Г®Г¤ГЁГІГҐГ«Гј ГІГ°Г Г¬ГўГ Гї", "ГЊГ ГёГЁГ­ГЁГ±ГІ ГЅГ«ГҐГЄГІГ°Г®ГЇГ®ГҐГ§Г¤Г ", "ГѓГ«Г ГўГ­Г»Г© ГґГҐГ°Г¬ГҐГ°", "ГђГіГЄГ®ГўГ®Г¤ГЁГІГҐГ«Гј ГЈГ°ГіГ§Г·ГЁГЄГ®Гў", "ГђГіГЄГ®ГўГ®Г¤ГЁГІГҐГ«Гј Г§Г ГўГ®Г¤Г ", "ГђГҐГ¬Г®Г­ГІГ­ГЁГЄ Г¤Г®Г°Г®ГЈ", "ГЏГ°Г®Г¤Г ГўГҐГ¶ ГµГ®ГІГ¤Г®ГЈГ®Гў", "ГЏГ Г°ГЄГ®ГўГ№ГЁГЄ"}
 
 function onWindowMessage(msg, wparam, lparam)
 	if msg == wm.WM_KILLFOCUS then
@@ -88,21 +88,21 @@ function autoupdate(json_url, prefix, url)
                         lua_thread.create(function(prefix)
                         local dlstatus = require('moonloader').download_status
                         local color = -1
-                        sampAddChatMessage((prefix..'Обнаружено обновление. Пытаюсь обновиться c '..thisScript().version..' на '..updateversion), color)
+                        sampAddChatMessage((prefix..'ГЋГЎГ­Г Г°ГіГ¦ГҐГ­Г® Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ. ГЏГ»ГІГ ГѕГ±Гј Г®ГЎГ­Г®ГўГЁГІГјГ±Гї c '..thisScript().version..' Г­Г  '..updateversion), color)
                         wait(250)
                         downloadUrlToFile(updatelink, thisScript().path,
                             function(id3, status1, p13, p23)
                                 if status1 == dlstatus.STATUS_DOWNLOADINGDATA then
-                                    print(string.format('Загружено %d из %d.', p13, p23))
+                                    print(string.format('Г‡Г ГЈГ°ГіГ¦ГҐГ­Г® %d ГЁГ§ %d.', p13, p23))
                                 elseif status1 == dlstatus.STATUS_ENDDOWNLOADDATA then
-                                    print('Загрузка обновления завершена.')
-                                    sampAddChatMessage((prefix..'Обновление завершено!'), color)
+                                    print('Г‡Г ГЈГ°ГіГ§ГЄГ  Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГї Г§Г ГўГҐГ°ГёГҐГ­Г .')
+                                    sampAddChatMessage((prefix..'ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ Г§Г ГўГҐГ°ГёГҐГ­Г®!'), color)
                                     goupdatestatus = true
                                     lua_thread.create(function() wait(500) thisScript():reload() end)
                                 end
                                 if status1 == dlstatus.STATUSEX_ENDDOWNLOAD then
                                     if goupdatestatus == nil then
-                                        sampAddChatMessage((prefix..'Обновление прошло неудачно. Запускаю устаревшую версию..'), color)
+                                        sampAddChatMessage((prefix..'ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ ГЇГ°Г®ГёГ«Г® Г­ГҐГіГ¤Г Г·Г­Г®. Г‡Г ГЇГіГ±ГЄГ Гѕ ГіГ±ГІГ Г°ГҐГўГёГіГѕ ГўГҐГ°Г±ГЁГѕ..'), color)
                                         update = false
                                     end
                                 end
@@ -110,11 +110,11 @@ function autoupdate(json_url, prefix, url)
                         end, prefix)
                     else
                         update = false
-                        print('v'..thisScript().version..': Обновление не требуется.')
+                        print('v'..thisScript().version..': ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ Г­ГҐ ГІГ°ГҐГЎГіГҐГІГ±Гї.')
                     end
                 end
             else
-                print('v'..thisScript().version..': Не могу проверить обновление. Смиритесь или проверьте самостоятельно на '..url)
+                print('v'..thisScript().version..': ГЌГҐ Г¬Г®ГЈГі ГЇГ°Г®ГўГҐГ°ГЁГІГј Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ. Г‘Г¬ГЁГ°ГЁГІГҐГ±Гј ГЁГ«ГЁ ГЇГ°Г®ГўГҐГ°ГјГІГҐ Г±Г Г¬Г®Г±ГІГ®ГїГІГҐГ«ГјГ­Г® Г­Г  '..url)
                 update = false
             end
         end
@@ -137,7 +137,7 @@ function main()
             if response['login'] then
                 sampAddChatMessage(tagchat .. response['message'], -1)
             else
-                sampAddChatMessage(tagchat .. "У вас отсутствует доступ в боте.", -1)
+                sampAddChatMessage(tagchat .. "Г“ ГўГ Г± Г®ГІГ±ГіГІГ±ГІГўГіГҐГІ Г¤Г®Г±ГІГіГЇ Гў ГЎГ®ГІГҐ.", -1)
                 thisScript():unload()
             end
         else
@@ -153,7 +153,7 @@ function main()
                     end
                     local response = decodeJson(u8:decode(e))
                     if not response['message'] then
-                        sampAddChatMessage(tagchat .. "У вас отсутствует доступ в боте.", -1)
+                        sampAddChatMessage(tagchat .. "Г“ ГўГ Г± Г®ГІГ±ГіГІГ±ГІГўГіГҐГІ Г¤Г®Г±ГІГіГЇ Гў ГЎГ®ГІГҐ.", -1)
                         thisScript():unload()
                     end
                 else
@@ -177,12 +177,12 @@ function main()
 				status_formi = false
 				statusnotf = false
 				sampProcessChatInput(forma)
-				sampAddChatMessage(tagchat .. 'Вы успешно {1aff00}приняли{ffffff} форму на игрока!', -1)
+				sampAddChatMessage(tagchat .. 'Г‚Г» ГіГ±ГЇГҐГёГ­Г® {1aff00}ГЇГ°ГЁГ­ГїГ«ГЁ{ffffff} ГґГ®Г°Г¬Гі Г­Г  ГЁГЈГ°Г®ГЄГ !', -1)
 				printStyledString("~g~~h~Form accepted", 3000, 5)
 			else
 				status_formi = false
 				statusnotf = false
-				sampAddChatMessage(tagchat .. 'На данный момент нет актуальных форм для выдачи наказания!', -1)
+				sampAddChatMessage(tagchat .. 'ГЌГ  Г¤Г Г­Г­Г»Г© Г¬Г®Г¬ГҐГ­ГІ Г­ГҐГІ Г ГЄГІГіГ Г«ГјГ­Г»Гµ ГґГ®Г°Г¬ Г¤Г«Гї ГўГ»Г¤Г Г·ГЁ Г­Г ГЄГ Г§Г Г­ГЁГї!', -1)
 			end
 		end
     end
@@ -207,8 +207,8 @@ end
 
 function addform(ggggg, formai, nicki, idi, textio)
     forma, nickform, timeform, status_formi = formai, nicki, os.time(), true
-    sampAddChatMessage(tagchat .. 'Игрок {0080ff}' .. tostring(nicki) .. '[' .. tostring(idi) ..']{ffffff} нарушил правила сервера!', -1)
-    sampAddChatMessage(tagchat .. 'Нажмите {c92800}' .. vkeys.id_to_name(settings.main.key_accept_form) .. '{ffffff} для быстрой выдачи формы: {9f63ff}' .. forma, -1)
+    sampAddChatMessage(tagchat .. 'Г€ГЈГ°Г®ГЄ {0080ff}' .. tostring(nicki) .. '[' .. tostring(idi) ..']{ffffff} Г­Г Г°ГіГёГЁГ« ГЇГ°Г ГўГЁГ«Г  Г±ГҐГ°ГўГҐГ°Г !', -1)
+    sampAddChatMessage(tagchat .. 'ГЌГ Г¦Г¬ГЁГІГҐ {c92800}' .. vkeys.id_to_name(settings.main.key_accept_form) .. '{ffffff} Г¤Г«Гї ГЎГ»Г±ГІГ°Г®Г© ГўГ»Г¤Г Г·ГЁ ГґГ®Г°Г¬Г»: {9f63ff}' .. forma, -1)
 	sampAddChatMessage(tagchat .. textio, -1)
     createNotf()
 end
